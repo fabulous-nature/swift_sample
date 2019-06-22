@@ -20,11 +20,13 @@ class ViewController: UIViewController {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         }else{
-            display.text = digit
-            userIsInTheMiddleOfTyping = true
+            if digit != "0"{
+                display.text = digit
+                userIsInTheMiddleOfTyping = true
+            }
         }
         
-        print("\(digit) was touched")
+       // print("\(digit) was touched")
     }
 
     
@@ -33,25 +35,27 @@ class ViewController: UIViewController {
             return Double(display.text!)!
         }
         set{
-            display.text! = String(newValue)
+            if newValue == Double.zero{
+                display.text! = String(0)
+            }else{
+                display.text! = String(newValue)
+            }
         }
     }
     
+  //  private var brain: CalculatorBrain = CalculatorBrain()
+      private var brain = CalculatorBrain()
     
     @IBAction func performOperation(_ sender: UIButton) {
-        userIsInTheMiddleOfTyping = false
+        if userIsInTheMiddleOfTyping {
+            brain.setOperand(displayValue)
+            userIsInTheMiddleOfTyping = false
+        }
         if let mathematicalSymbol = sender.currentTitle{
-            switch mathematicalSymbol {
-            case "∏":
-                 displayValue = Double.pi
-               // display.text! = String(Double.pi)
-            case "√":
-                displayValue = sqrt(displayValue)
-              //  let operand =  Double(display.text!)!
-                //display.text = String(sqrt(operand))
-            default:
-                break
-            }
+            brain.performOperation(mathematicalSymbol)
+        }
+        if let result = brain.result {
+            displayValue = result
         }
     }
     
