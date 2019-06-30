@@ -13,14 +13,20 @@ class FaceView: UIView {
     @IBInspectable
     var scale: CGFloat = 0.9 {
         didSet{
+            setNeedsDisplay() //重画
+        }}
+    
+    @IBInspectable
+    var eyesOpen: Bool = true {
+        didSet{
             setNeedsDisplay()
         }}
     
     @IBInspectable
-    var eyesOpen: Bool = true
-    
-    @IBInspectable
-    var lineWidth: CGFloat = 5.0
+    var lineWidth: CGFloat = 5.0{
+        didSet{
+            setNeedsDisplay()
+        }}
     
     @IBInspectable
     var color: UIColor = UIColor.blue
