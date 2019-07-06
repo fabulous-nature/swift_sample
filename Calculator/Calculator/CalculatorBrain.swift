@@ -17,6 +17,10 @@ func add(op1:Double,op2:Double)->Double{
 }
 
 struct CalculatorBrain {
+    
+    mutating func addUnaryOperation(name sysbol: String, _ operation: @escaping (Double) -> Double) {
+        operations[sysbol] = Operation.unaryOperation(operation)
+    }
     private var accumulator: Double?
     
     private enum Operation{
