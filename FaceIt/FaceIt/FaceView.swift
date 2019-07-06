@@ -1,7 +1,7 @@
 //
 //  FaceView.swift
 //  FaceIt
-//
+//  自定义view
 //  Created by wanghuamin on 2019/6/25.
 //  Copyright © 2019 wanghuamin. All rights reserved.
 //
