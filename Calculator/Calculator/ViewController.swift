@@ -24,7 +24,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        brain.addUnaryOperation(name: "✅"){[weak weakSelf = self] in
+        //以下是使用尾随闭包进行函数调用
+        //尾随闭包是一个书写在函数括号之后的闭包表达式，函数支持将其作为最后一个参数调用。
+        brain.addUnaryOperation(name: "✅"){[weak weakSelf = self] in //弱引用 解决闭包 循环依赖问题
             weakSelf?.display.textColor = UIColor.green
             return sqrt($0)
         }
@@ -60,7 +62,7 @@ class ViewController: UIViewController {
     }
     
   //  private var brain: CalculatorBrain = CalculatorBrain()
-      private var brain = CalculatorBrain()
+    private var brain = CalculatorBrain()
     
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
