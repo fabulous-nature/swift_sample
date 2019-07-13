@@ -22,6 +22,7 @@ class ViewController: UIViewController {
 //        }
 //    }
     
+    //所有视图加载到内存后调用
     override func viewDidLoad() {
         super.viewDidLoad()
         //以下是使用尾随闭包进行函数调用

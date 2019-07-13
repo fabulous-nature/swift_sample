@@ -10,6 +10,7 @@ import UIKit
 
 //class ImageViewController: UIViewController, UIScrollViewDelegate {
 class ImageViewController: UIViewController {
+    
     var imageURL: URL?{
         didSet{
             image = nil
@@ -32,7 +33,7 @@ class ImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //view.addSubview(imageView)
-        imageURL = DemoURL.stanford
+        //imageURL = DemoURL.stanford
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +68,7 @@ class ImageViewController: UIViewController {
     }
 }
 
-extension ImageViewController : UIScrollViewDelegate{
+extension ImageViewController: UIScrollViewDelegate{
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
