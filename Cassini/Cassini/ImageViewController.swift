@@ -20,11 +20,21 @@ class ImageViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     private func fetchImage(){
         if let url = imageURL{
-            let urlContents = try? Data(contentsOf: url)
-            if let imageData = urlContents{
-                image = UIImage(data: imageData)
+            //this next line of code can throw an error
+            //and it also will block the UI entirely while access the network
+            //we really should be doing it in a separate thread
+            spinner.startAnimating()
+            DispatchQueue.global(qos: .userInitiated).async {[weak self] in
+                let urlContents = try? Data(contentsOf: url)
+                if let imageData = urlContents,url == self?.imageURL{
+                    DispatchQueue.main.async {
+                        self?.image = UIImage(data: imageData)
+                    }
+                }
             }
         }
     }
@@ -42,7 +52,7 @@ class ImageViewController: UIViewController {
             fetchImage()
         }
     }
-    
+
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
             scrollView.delegate = self
@@ -63,7 +73,12 @@ class ImageViewController: UIViewController {
         set{
             imageView.image = newValue
             imageView.sizeToFit()
+            //careful here because scrollview might be nil
+            //(for example, if we're setting our image as part of a prepare)
+            //so use optional chaining to do nothing
+            //if out scrollview outlet has not yet been set
             scrollView?.contentSize = imageView.frame.size
+            spinner?.stopAnimating()
         }
     }
 }

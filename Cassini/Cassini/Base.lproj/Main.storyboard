@@ -70,21 +70,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v25-o5-bZX">
-                                <rect key="frame" x="0.0" y="88" width="414" height="720"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VqB-AV-C3O">
+                                <rect key="frame" x="189" y="458" width="37" height="37"/>
+                                <color key="color" red="0.121445737" green="0.17588378330000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="v25-o5-bZX" firstAttribute="leading" secondItem="Jfj-pi-AlX" secondAttribute="leading" id="IhK-T3-P9Z"/>
-                            <constraint firstItem="v25-o5-bZX" firstAttribute="centerY" secondItem="Jfj-pi-AlX" secondAttribute="centerY" id="RWu-bj-Xpk"/>
-                            <constraint firstAttribute="trailing" secondItem="v25-o5-bZX" secondAttribute="trailing" id="cMf-LQ-Fss"/>
-                            <constraint firstItem="v25-o5-bZX" firstAttribute="top" secondItem="GFa-Df-CLN" secondAttribute="top" id="hgR-hJ-xBN"/>
+                            <constraint firstAttribute="trailing" secondItem="v25-o5-bZX" secondAttribute="trailing" id="2cV-Tv-8Fc"/>
+                            <constraint firstItem="v25-o5-bZX" firstAttribute="centerX" secondItem="VqB-AV-C3O" secondAttribute="centerX" id="EzX-jb-YMa"/>
+                            <constraint firstItem="v25-o5-bZX" firstAttribute="leading" secondItem="Jfj-pi-AlX" secondAttribute="leading" id="IzX-pC-NZt"/>
+                            <constraint firstItem="VqB-AV-C3O" firstAttribute="centerY" secondItem="Jfj-pi-AlX" secondAttribute="centerY" id="NWM-U8-L7w"/>
+                            <constraint firstItem="v25-o5-bZX" firstAttribute="top" secondItem="GFa-Df-CLN" secondAttribute="top" id="amg-cS-9Uz"/>
+                            <constraint firstItem="v25-o5-bZX" firstAttribute="bottom" secondItem="GFa-Df-CLN" secondAttribute="bottom" id="wYi-bs-tAe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GFa-Df-CLN"/>
                     </view>
                     <navigationItem key="navigationItem" id="kja-2d-bol"/>
                     <connections>
                         <outlet property="scrollView" destination="v25-o5-bZX" id="Vd1-Xw-ud2"/>
+                        <outlet property="spinner" destination="VqB-AV-C3O" id="nID-p0-4hw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zim-Ly-mkz" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,16 +8,38 @@
 
 import UIKit
 
-class CassiniViewController: UIViewController {
+class CassiniViewController: UIViewController,UISplitViewControllerDelegate {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.splitViewController?.delegate = self
+    }
 
   
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let url = DemoURL.NASA[segue.identifier ?? ""]{
-            if let imageVC = (segue.destination as? ImageViewController){
+            var destinationViewController = segue.destination
+            if let navigationController = destinationViewController as? UINavigationController{
+                destinationViewController = navigationController.visibleViewController ?? destinationViewController
+            }
+            if let imageVC = (destinationViewController as? ImageViewController){
                 imageVC.imageURL = url
                 imageVC.title = (sender as? UIButton)?.currentTitle
             }
         }
+    }
+    
+    
+    //显示主屏幕
+    func splitViewController(_ splitViewController: UISplitViewController,
+                             collapseSecondary secondaryViewController: UIViewController,
+                             onto primaryViewController: UIViewController) -> Bool {
+        if primaryViewController.Contents == self{
+            if let ivc = secondaryViewController.Contents as? ImageViewController, ivc.imageURL == nil{
+                return true
+            }
+        }
+        return false
     }
     
 }
